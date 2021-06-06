@@ -41,9 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
     'Foggy \n'
   ];
 
-  late String mostlySunnyCondition = 'Mostly Sunny';
-  late String partlyCloudyCondition = 'Partly Cloudy';
-  late String foggyCondition = 'Foggy \n';
+  late List<String> weatherIcons = [
+    'assets/icons/sun.png',
+    'assets/icons/cloud.png',
+    'assets/icons/sun_with_cloud.png'
+  ];
 
   late List<String> temperature = ['39', '38', '37.5'];
 
@@ -54,10 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
   late String tomorrow = 'Tomorrow';
 
   late List<String> times = ['01:00', '02:00', '03:00'];
-
-  late String timeNow = '01:00';
-  late String timeAfterAnHour = '02:00';
-  late String timeAfterTwoHours = '03:00';
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        mostlySunnyCondition,
+                        weatherConditions[0],
                         style: GoogleFonts.openSans(
                             color: Colors.white,
                             fontSize: 26,
@@ -263,15 +261,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [
-                              Color(0XFF9380DB),
-                              Color(0XFF9380DB),
-                              Color(0XFF4D27C6),
-                              Color(0XFF4D27C6),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight
-                          ),
+                              colors: [
+                                Color(0XFF9380DB),
+                                Color(0XFF9380DB),
+                                Color(0XFF4D27C6),
+                                Color(0XFF4D27C6),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight),
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: Padding(
@@ -307,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 20,
                                   ),
                                   Image.asset(
-                                    'assets/icons/sun.png',
+                                    weatherIcons[index],
                                     height: 44,
                                   ),
                                   SizedBox(
@@ -325,7 +322,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 15,
                                   ),
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
